@@ -25,7 +25,24 @@ public class TableroAleatorio extends Tablero {
 
 
 	public void contarMinasAlrededor(ArrayList<Coordenada> posiciones) {
-		// TODO
+		
+		int longitud = 8;
+
+		for (Coordenada coordenada : posiciones) {
+			for (int i = 0; i < longitud; i++) {
+
+				int[] casillasAlrededor = Utiles.damePosicionAlrededor(i);
+
+				Coordenada miCordenada = new Coordenada(coordenada.getPosX() + casillasAlrededor[0],
+						coordenada.getPosY() + casillasAlrededor[1]);
+				if (miCordenada.getPosX() >= 0 && miCordenada.getPosY() >= 0 && miCordenada.getPosX() < getAlto()
+						&& miCordenada.getPosY() < getAlto() && !getCasilla(miCordenada).isMina()) {
+
+					getCasilla(miCordenada).incrementaUnaMinaAlrededor();
+				}
+			}
+
+		}
 	}
 
 	private void colocarMinas(ArrayList<Coordenada> posiciones) {

@@ -10,6 +10,10 @@ public class Casilla {
 	public Casilla() {
 		
 	}
+	public void incrementaUnaMinaAlrededor() {
+		this.minasAlrededor +=1;
+		
+	}
 	public boolean isMina() {
 		return mina;
 	}
