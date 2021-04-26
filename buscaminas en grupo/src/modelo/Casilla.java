@@ -43,6 +43,13 @@ public class Casilla {
 		return String.valueOf(mina);
 	}
 	
-	
+	public boolean setMarca() {
+		boolean retorno=false;
+		if(isVelada()) {
+			setMarcada(!isMarcada());
+			retorno=true;
+		}
+		return retorno;
+	}
 	
 }
