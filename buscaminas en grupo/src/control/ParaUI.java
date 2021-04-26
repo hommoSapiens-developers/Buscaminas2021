@@ -5,15 +5,18 @@ import java.awt.event.ActionListener;
 
 import modelo.Densidad;
 import modelo.Dificultad;
+import modelo.Tablero;
+import modelo.TableroAleatorio;
 import vista.UI;
 
 public class ParaUI extends UI {
 
 	private Controlador controlador;
+	TableroAleatorio tablero;
 	
 	public ParaUI() {
 		super();
-		controlador=new Controlador();
+		controlador = new Controlador();
 		// leyes de demeter
 		// para solucionar esto es crear metodos delegados
 //		jPanelOpciones.btnIniciar.addActionListener(l);

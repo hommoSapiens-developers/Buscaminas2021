@@ -1,7 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-
 import utiles.Utiles;
 
 public class TableroAleatorio extends Tablero {
@@ -11,6 +10,11 @@ public class TableroAleatorio extends Tablero {
 		super(lado);
 		ArrayList<Coordenada> posiciones = generaAleatorio(minas, lado);
 		disponerTablero(posiciones);
+	}
+	
+	public boolean marcarCasilla(Coordenada coordenada) {
+		Casilla casilla = getCasilla(coordenada);
+		return casilla.setMarca();
 	}
 	
 	//constructor no aleatorio

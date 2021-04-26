@@ -38,11 +38,19 @@ public class Casilla {
 	public void setMinasAlrededor(int minasAlrededor) {
 		this.minasAlrededor = minasAlrededor;
 	}
+	
 	@Override
 	public String toString() {
 		return String.valueOf(mina);
 	}
 	
-	
+	public boolean setMarca() {
+		boolean retorno=false;
+		if(isVelada()) {
+			setMarcada(!isMarcada());
+			retorno=true;
+		}
+		return retorno;
+	}
 	
 }

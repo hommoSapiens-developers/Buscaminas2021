@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.GridLayout;
 
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
