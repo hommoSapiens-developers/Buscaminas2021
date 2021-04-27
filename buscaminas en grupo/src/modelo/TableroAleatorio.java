@@ -2,30 +2,95 @@ package modelo;
 
 import java.util.ArrayList;
 
+import model.Casilla;
+import model.Coordenada;
 import utiles.Utiles;
 
 public class TableroAleatorio extends Tablero {
+	private Casilla[][] casillas;
 
-	//Constructor aleatorio
+	// Constructor aleatorio
 	public TableroAleatorio(int lado, int minas) {
 		super(lado);
 		ArrayList<Coordenada> posiciones = generaAleatorio(minas, lado);
 		disponerTablero(posiciones);
 	}
-	
-	//constructor no aleatorio
-	public TableroAleatorio(int lado,ArrayList<Coordenada> posiciones) {
+
+	// constructor no aleatorio
+	public TableroAleatorio(int lado, ArrayList<Coordenada> posiciones) {
 		super(lado);
 		disponerTablero(posiciones);
 	}
+
 	private void disponerTablero(ArrayList<Coordenada> posiciones) {
 		colocarMinas(posiciones);
 		contarMinasAlrededor(posiciones);
 	}
 
+	public boolean marcarCasilla(Coordenada coordenada) {
+		Casilla casilla = getCasilla(coordenada);
+		return casilla.setMarca();
+	}
+
+	public void desvelarCasilla(Coordenada coordenada) {
+
+		Casilla casillaActual = getCasilla(coordenada);
+
+		desvelarCasillaVelada(coordenada, casillaActual, coordenada.getPosX(), coordenada.getPosY());
+		desvelarCasillasAlrededorDesvelada(coordenada, casillaActual, coordenada.getPosX(), coordenada.getPosY());
+	}
+
+	public boolean isDentroLimites(Coordenada alrededor) {
+		return alrededor.getPosX() >= 0 && alrededor.getPosX() < casillas.length && alrededor.getPosY() >= 0
+				&& alrededor.getPosY() < casillas.length;
+	}
+
+	public void desvelarCasillasAlrededorDesvelada(Coordenada coordenada, Casilla casillaActual, int posX, int posY) {
+		if (!casillaActual.isVelada() && !casillaActual.isMarcada()) {
+			int casillasMarcadas = 0;
+
+			for (int i = posX - 1; i <= posX + 1; i++) {
+				for (int j = posY - 1; j <= posY + 1; j++) {
+					Coordenada coordenadaRecorrido = new Coordenada(i, j);
+					if (isDentroLimites(coordenadaRecorrido) && !coordenada.equals(coordenadaRecorrido)
+							&& getCasilla(coordenadaRecorrido).isMarcada()) {
+						casillasMarcadas++;
+					}
+				}
+			}
+			if (casillasMarcadas == casillaActual.getMinasAlrededor()) {
+				for (int i = posX - 1; i <= posX + 1; i++) {
+					for (int j = posY - 1; j <= posY + 1; j++) {
+						Coordenada coordenadaRecorrido = new Coordenada(i, j);
+						if (isDentroLimites(coordenadaRecorrido) && getCasilla(coordenadaRecorrido).isVelada()
+								&& !coordenada.equals(coordenadaRecorrido)) {
+							desvelarCasilla(coordenadaRecorrido);
+						}
+					}
+				}
+			}
+
+		}
+	}
+
+	public void desvelarCasillaVelada(Coordenada coordenada, Casilla casillaActual, int posX, int posY) {
+		if (casillaActual.isVelada() && !casillaActual.isMarcada()) {
+			casillaActual.setVelada(false);
+
+			for (int i = posX - 1; i <= posX + 1; i++) {
+				for (int j = posY - 1; j <= posY + 1; j++) {
+					Coordenada coordenadaRecorrido = new Coordenada(i, j);
+					if (isDentroLimites(coordenadaRecorrido) && casillaActual.getMinasAlrededor() == 0
+							&& !coordenada.equals(coordenadaRecorrido) && !casillaActual.isMina()) {
+						desvelarCasilla(coordenadaRecorrido);
+					}
+				}
+			}
+		}
+	}
 
 	public void contarMinasAlrededor(ArrayList<Coordenada> posiciones) {
-		
+
 		int longitud = 8;
 
 		for (Coordenada coordenada : posiciones) {
