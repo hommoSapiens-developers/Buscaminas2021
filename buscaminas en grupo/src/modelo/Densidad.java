@@ -8,5 +8,10 @@ public enum Densidad {
 	private Densidad(int porcentaje) {
 		this.porcentaje = porcentaje;
 	}
+
+	public int getPorcentaje() {
+		return porcentaje;
+	}
+	
 	
 }
