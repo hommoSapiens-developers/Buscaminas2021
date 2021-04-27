@@ -26,7 +26,7 @@ public class TableroAleatorio extends Tablero {
 		colocarMinas(posiciones);
 		contarMinasAlrededor(posiciones);
 	}
-
+	
 	public boolean marcarCasilla(Coordenada coordenada) {
 		Casilla casilla = getCasilla(coordenada);
 		return casilla.setMarca();
