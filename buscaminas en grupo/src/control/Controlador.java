@@ -3,28 +3,34 @@ package control;
 import modelo.Coordenada;
 import modelo.Densidad;
 import modelo.Dificultad;
+import modelo.GestionDatos;
 import modelo.TableroAleatorio;
 
 public class Controlador {
-	private TableroAleatorio TableroAleatorio;
-	private Densidad densidad;
-	private Dificultad dificultad;
+	private GestionDatos gestion;
+//	private TableroAleatorio TableroAleatorio;
 
 	public Controlador() {
-		super();
-		TableroAleatorio = new TableroAleatorio(this.dificultad.getLongitud(),
-				this.densidad.CalculaMinasDensidad(dificultad, densidad));
+		gestion = new GestionDatos();
+
 	}
 
-	public boolean marcarCasilla(Coordenada coordenada) {
-		return TableroAleatorio.marcarCasilla(coordenada);
+	public void creaTablero(int tamano, int numMinas) {
+		this.gestion.crearTablero(tamano, numMinas);
 	}
 
-	public void desvelarCasilla(Coordenada coordenada) {
-		TableroAleatorio.desvelarCasilla(coordenada);
-	}
+//		TableroAleatorio = new TableroAleatorio(this.dificultad.getLongitud(),
+//				this.densidad.CalculaMinasDensidad(dificultad, densidad));
 
-	public TableroAleatorio iniciarJuego(Dificultad dificultad, Densidad densidad) {
-		return new TableroAleatorio(dificultad.getLongitud(), densidad.CalculaMinasDensidad(dificultad, densidad));
-	}
+//	public boolean marcarCasilla(Coordenada coordenada) {
+//		return TableroAleatorio.marcarCasilla(coordenada);
+//	}
+
+//	public void desvelarCasilla(Coordenada coordenada) {
+//		TableroAleatorio.desvelarCasilla(coordenada);
+//	}
+
+//	public TableroAleatorio iniciarJuego(Dificultad dificultad, Densidad densidad) {
+//		return new TableroAleatorio(dificultad.getLongitud(), densidad.CalculaMinasDensidad(dificultad, densidad));
+//	}
 }
