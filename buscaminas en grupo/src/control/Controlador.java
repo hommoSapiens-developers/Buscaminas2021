@@ -1,30 +1,30 @@
 package control;
 
-
-import javax.swing.JButton;
-
-
 import modelo.Coordenada;
 import modelo.Densidad;
 import modelo.Dificultad;
-import modelo.GestionDatos;
+import modelo.TableroAleatorio;
 
 public class Controlador {
-	private GestionDatos gestion;
-	
+	private TableroAleatorio TableroAleatorio;
+	private Densidad densidad;
+	private Dificultad dificultad;
+
 	public Controlador() {
 		super();
-		gestion=new GestionDatos();
-	}	
-	public boolean marcarCasilla(Coordenada coordenada) {
-		return gestion.marcarCasilla(coordenada);
+		TableroAleatorio = new TableroAleatorio(this.dificultad.getLongitud(),
+				this.densidad.CalculaMinasDensidad(dificultad, densidad));
 	}
-	
-	public void desvelarCasilla(Coordenada coordenada) {
-		gestion.desvelarCasilla(coordenada);
-	}
-	public void crearTablero(Dificultad dificultad, Densidad densidad) {
-		gestion.crearTablero(dificultad, densidad);
 
-  }
+	public boolean marcarCasilla(Coordenada coordenada) {
+		return TableroAleatorio.marcarCasilla(coordenada);
+	}
+
+	public void desvelarCasilla(Coordenada coordenada) {
+		TableroAleatorio.desvelarCasilla(coordenada);
+	}
+
+	public TableroAleatorio iniciarJuego(Dificultad dificultad, Densidad densidad) {
+		return new TableroAleatorio(dificultad.getLongitud(), densidad.CalculaMinasDensidad(dificultad, densidad));
+	}
 }

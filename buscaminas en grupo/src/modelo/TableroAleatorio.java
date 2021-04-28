@@ -26,7 +26,7 @@ public class TableroAleatorio extends Tablero {
 		colocarMinas(posiciones);
 		contarMinasAlrededor(posiciones);
 	}
-	
+
 	public boolean marcarCasilla(Coordenada coordenada) {
 		Casilla casilla = getCasilla(coordenada);
 		return casilla.setMarca();
@@ -123,7 +123,6 @@ public class TableroAleatorio extends Tablero {
 	public ArrayList<Coordenada> generaAleatorio(int minas, int longitud) {
 		assert minas > 0 && longitud > 0;
 		assert minas < longitud * longitud;
-//		long inicio = System.currentTimeMillis();
 		ArrayList<Coordenada> coordenadas = new ArrayList<Coordenada>();
 		for (int i = 0; i < minas; i++) {
 			Coordenada coord;
@@ -132,10 +131,7 @@ public class TableroAleatorio extends Tablero {
 			} while (existeCoord(coord, coordenadas));
 			coordenadas.add(coord);
 		}
-//		 long fin = System.currentTimeMillis();
-//		 System.out.println("en milis "+(fin-inicio));
 		return coordenadas;
-
 	}
 
 	private Coordenada dameCoordenada(int lado) {
@@ -149,9 +145,5 @@ public class TableroAleatorio extends Tablero {
 			}
 		}
 		return false;
-	}
-	public int minasDensidad(Dificultad dificultad, Densidad densidad){
-		return (dificultad.getLongitud()*dificultad.getLongitud())*densidad.getPorcentaje()/100;
-		
 	}
 }

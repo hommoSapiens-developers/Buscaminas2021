@@ -1,7 +1,7 @@
 package modelo;
 
 public class Coordenada {
-	private int posX,posY;
+	private int posX, posY;
 
 	public Coordenada(int posX, int posY) {
 		super();
@@ -49,6 +49,5 @@ public class Coordenada {
 			return false;
 		return true;
 	}
-	
 
 }
