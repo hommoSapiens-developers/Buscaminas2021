@@ -1,30 +1,26 @@
 package control;
 
-
 import javax.swing.JButton;
-
 
 import modelo.Coordenada;
 import modelo.Densidad;
 import modelo.Dificultad;
-import modelo.GestionDatos;
+import modelo.TableroAleatorio;
+import vista.Botonera;
 
 public class Controlador {
-	private GestionDatos gestion;
+	private TableroAleatorio tableroAleatorio;
 	
-	public Controlador() {
-		super();
-		gestion=new GestionDatos();
-	}	
-	public boolean marcarCasilla(Coordenada coordenada) {
-		return gestion.marcarCasilla(coordenada);
-	}
-	
-	public void desvelarCasilla(Coordenada coordenada) {
-		gestion.desvelarCasilla(coordenada);
-	}
-	public void crearTablero(Dificultad dificultad, Densidad densidad) {
-		gestion.crearTablero(dificultad, densidad);
+	public void dameValores(Densidad densidad, Dificultad dificultad) {
 
-  }
+	}
+	
+	//del para ui llama a control y le entra el boton 
+	public boolean marcarCasilla(Coordenada coordenada) {
+		return tableroAleatorio.marcarCasilla(coordenada);
+	}
+	
+	private void desvelarCasilla(Coordenada coordenada) {
+		tableroAleatorio.desvelarCasilla(coordenada);
+	}
 }
