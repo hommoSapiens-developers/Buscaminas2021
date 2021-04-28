@@ -2,8 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 
-import model.Casilla;
-import model.Coordenada;
+import modelo.Casilla;
+import modelo.Coordenada;
 import utiles.Utiles;
 
 public class TableroAleatorio extends Tablero {
@@ -149,5 +149,9 @@ public class TableroAleatorio extends Tablero {
 			}
 		}
 		return false;
+	}
+	public int minasDensidad(Dificultad dificultad, Densidad densidad){
+		return (dificultad.getLongitud()*dificultad.getLongitud())*densidad.getPorcentaje()/100;
+		
 	}
 }
