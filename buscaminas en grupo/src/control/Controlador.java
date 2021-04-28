@@ -1,6 +1,9 @@
 package control;
 
 
+import javax.swing.JButton;
+
+
 import modelo.Coordenada;
 import modelo.Densidad;
 import modelo.Dificultad;
@@ -22,6 +25,6 @@ public class Controlador {
 	}
 	public void crearTablero(Dificultad dificultad, Densidad densidad) {
 		gestion.crearTablero(dificultad, densidad);
-		
-	}
+
+  }
 }
