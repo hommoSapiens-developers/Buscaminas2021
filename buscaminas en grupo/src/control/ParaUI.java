@@ -32,8 +32,7 @@ public class ParaUI extends UI {
 				System.out.println(densidad);
 				Dificultad dificultad = (Dificultad) getCmbDificultad().getSelectedItem();
 				System.out.println(dificultad.getLongitud());
-				controlador.dameValores(densidad, dificultad);
-//				jPanelOpciones.getCmbDensidad();
+				controlador.crearTablero(dificultad,densidad);
 				botonera.setVisible(true);
 			}
 		});		
