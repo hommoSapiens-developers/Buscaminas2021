@@ -19,18 +19,17 @@ public class JPanelOpciones extends JPanel {
 	private JComboBox cmbDificultad;
 	private JComboBox cmbDensidad;
 
-	
 	/**
 	 * Create the panel.
 	 */
 	public JPanelOpciones() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {70, 100, 70, 100, 100};
-		gridBagLayout.rowHeights = new int[] {0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
-		gridBagLayout.rowWeights = new double[]{0.0};
+		gridBagLayout.columnWidths = new int[] { 70, 100, 70, 100, 100 };
+		gridBagLayout.rowHeights = new int[] { 0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gridBagLayout.rowWeights = new double[] { 0.0 };
 		setLayout(gridBagLayout);
-		
+
 		JLabel lblNewLabel = new JLabel("Densidad");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -39,7 +38,7 @@ public class JPanelOpciones extends JPanel {
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 0;
 		add(lblNewLabel, gbc_lblNewLabel);
-		
+
 		cmbDensidad = new JComboBox();
 		for (Densidad densidad : Densidad.values()) {
 			cmbDensidad.addItem(densidad);
@@ -50,7 +49,7 @@ public class JPanelOpciones extends JPanel {
 		gbc_cmbDensidad.gridx = 1;
 		gbc_cmbDensidad.gridy = 0;
 		add(cmbDensidad, gbc_cmbDensidad);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Dificultad");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
@@ -59,7 +58,7 @@ public class JPanelOpciones extends JPanel {
 		gbc_lblNewLabel_1.gridx = 2;
 		gbc_lblNewLabel_1.gridy = 0;
 		add(lblNewLabel_1, gbc_lblNewLabel_1);
-		
+
 		cmbDificultad = new JComboBox();
 		for (Dificultad dificultad : Dificultad.values()) {
 			cmbDificultad.addItem(dificultad);
@@ -70,9 +69,9 @@ public class JPanelOpciones extends JPanel {
 		gbc_cmbDificultad.gridx = 3;
 		gbc_cmbDificultad.gridy = 0;
 		add(cmbDificultad, gbc_cmbDificultad);
-		
+
 		btnIniciar = new JButton("Iniciar");
-		
+
 		GridBagConstraints gbc_btnIniciar = new GridBagConstraints();
 		gbc_btnIniciar.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnIniciar.gridx = 4;
@@ -80,12 +79,15 @@ public class JPanelOpciones extends JPanel {
 		add(btnIniciar, gbc_btnIniciar);
 
 	}
+
 	public JButton getBtnIniciar() {
 		return btnIniciar;
 	}
+
 	public JComboBox getCmbDificultad() {
 		return cmbDificultad;
 	}
+
 	public JComboBox getCmbDensidad() {
 		return cmbDensidad;
 	}
