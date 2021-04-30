@@ -34,10 +34,13 @@ public class UI extends JFrame {
 		jPanelOpciones=new JPanelOpciones();
 		contentPane.add(jPanelOpciones, BorderLayout.SOUTH);
 		
-		Dificultad dificultad = (Dificultad) getCmbDificultad().getSelectedItem();
-		botonera = new Botonera(dificultad.getLongitud());
+		
+	}
+	public void addBotonera(int tamano) {
+		botonera = new Botonera(tamano);
 		contentPane.add(botonera, BorderLayout.CENTER);
 		botonera.setVisible(false);
+		
 	}
 
 	public void tomaValores(Densidad densidad, Dificultad dificultad) {
