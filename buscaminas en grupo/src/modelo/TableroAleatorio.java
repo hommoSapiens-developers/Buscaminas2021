@@ -1,9 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-
-import modelo.Casilla;
-import modelo.Coordenada;
 import utiles.Utiles;
 
 public class TableroAleatorio extends Tablero {
@@ -145,5 +142,60 @@ public class TableroAleatorio extends Tablero {
 			}
 		}
 		return false;
+	}
+
+	public boolean perderPartida() {
+		boolean bandera = false;
+		
+		for (int i = 0; i < casillas.length && !bandera; i++) {
+			for (int j = 0; j < casillas.length && !bandera; j++) {
+				Coordenada coordenadaActual = new Coordenada(i, j);
+				if (this.getCasilla(coordenadaActual).isMina() && !this.getCasilla(coordenadaActual).isVelada()) {
+					bandera = true;
+				}
+			}
+		}
+		if (bandera) {
+			for (int k = 0; k < casillas.length; k++) {
+				for (int h = 0; h < casillas.length; h++) {
+					getCasilla(new Coordenada(k, h)).setVelada(false);
+				}
+			}
+		}
+		return bandera;
+	}
+
+	public void mostrarTableroDesvelado() {
+		
+		for (int i = 0; i < casillas.length; i++) {
+			for (int j = 0; j < casillas.length; j++) {
+				Coordenada cordenadaActual = new Coordenada(i, j);
+				if (getCasilla(cordenadaActual).isVelada()) {
+					getCasilla(cordenadaActual).setVelada(false);
+				}
+
+			}
+		}
+	}
+
+	public boolean ganarPartida() {
+		boolean bandera = true;
+
+		for (int i = 0; i < casillas.length; i++) {
+			for (int j = 0; j < casillas.length; j++) {
+				Coordenada cordenadaActual = new Coordenada(i, j);
+				if (getCasilla(cordenadaActual).isVelada() && getCasilla(cordenadaActual).isMina()
+						&& !getCasilla(cordenadaActual).isMarcada()) {
+					bandera = false;
+				}
+				if (getCasilla(cordenadaActual).isVelada() && !getCasilla(cordenadaActual).isMina()) {
+					bandera = false;
+				}
+				if (!getCasilla(cordenadaActual).isVelada() && getCasilla(cordenadaActual).isMina()) {
+					bandera = false;
+				}
+			}
+		}
+		return bandera;
 	}
 }
