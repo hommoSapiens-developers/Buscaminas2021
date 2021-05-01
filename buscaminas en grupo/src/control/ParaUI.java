@@ -6,43 +6,37 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import modelo.Coordenada;
 import modelo.Densidad;
 import modelo.Dificultad;
-import modelo.Tablero;
-import modelo.TableroAleatorio;
-import vista.Botonera;
 import vista.UI;
 
 public class ParaUI extends UI {
 
 	private Controlador controlador;
 	private ActionListener actionListener;
-	
 
 	public ParaUI() {
 		super();
 		controlador = new Controlador();
-//		this.preparameLaBotonera();
-		
-		
-	
-		
 		getBtnIniciar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Densidad densidad = (Densidad) getCmbDensidad().getSelectedItem();
 				Dificultad dificultad = (Dificultad) getCmbDificultad().getSelectedItem();
+				controlador.creaTablero(dificultad.getLongitud(), densidad.getPorcentaje());
 				addBotonera(dificultad.getLongitud());
 				botonera.setVisible(true);
-				controlador.creaTablero(dificultad.getLongitud(), densidad.getPorcentaje());
-				
+				//esto da fallo seria para cambiar el ui de forma
+//				if (controlador.ganarPartida()) {
+//					addGanarPartida();
+//				}
+//				if (controlador.perderPartida()) {
+//					addPerderPartida();
+//				}
 			}
 		});
 		
 	}
-		
-		
 	
 	private void preparameLaBotonera() {
 		this.actionListenerBotonera();

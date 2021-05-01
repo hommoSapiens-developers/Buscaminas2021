@@ -2,18 +2,14 @@ package ensayoUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import modelo.Coordenada;
-import modelo.Densidad;
 import modelo.Dificultad;
-import modelo.Tablero;
 import modelo.TableroAleatorio;
 import vista.Botonera;
 import javax.swing.JTextField;
@@ -62,13 +58,29 @@ public class EnsayoBotonera extends JFrame {
 		for (int i = 0; i < this.botonera.getAlto(); i++) {
 			for (int j = 0; j < this.botonera.getAncho(); j++) {
 				Coordenada coordenada = new Coordenada(i, j);
-				botonera.getButton(coordenada).addActionListener(new ActionListener() {
+				botonera.getButton(coordenada).addMouseListener(new MouseAdapter() {
 					@Override
-					public void actionPerformed(ActionEvent e) {
-						JButton boton = (JButton) e.getSource();
-						Coordenada coordenada2 = botonera.getCoordenada(boton);
-						int minasAlrededor = tablero.getCasilla(coordenada2).getMinasAlrededor();
-						boton.setText(String.valueOf(minasAlrededor));
+					public void mouseClicked(MouseEvent e) {
+						super.mouseClicked(e);
+						if (e.getButton() == 1) {
+							System.out.println("boton izquierdo");
+							JButton boton = (JButton) e.getSource();
+							Coordenada coordenada = botonera.getCoordenada(boton);
+							tablero.desvelarCasilla(coordenada);
+						}
+						if (e.getButton() == 3) {
+							System.out.println("boton derecho");
+							JButton boton = (JButton) e.getSource();
+							Coordenada coordenada2 = botonera.getCoordenada(boton);
+							if (tablero.marcarCasilla(coordenada2)) {
+								boton.setText("X");
+							}
+						}
+						if (tablero.perderPartida()) {
+							tablero.mostrarTableroDesvelado();
+						}else {
+							tablero.ganarPartida();
+						}
 					}
 				});
 				;
